@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class RogueCube : MonoBehaviour
 {
-    // Start is called before the first frame update
+    PlayerCubeManager playerCubeManager;
+    bool attemptedMerge;
+
     void Start()
     {
-        
+        playerCubeManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCubeManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerStay(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            //print("Colliding with player");
+            if (Input.GetKey(KeyCode.Space) && !attemptedMerge)
+            {
+                playerCubeManager.RequestMerge(this);
+                attemptedMerge = true;
+            }
+        }
     }
 }
