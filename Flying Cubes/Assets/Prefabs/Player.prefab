@@ -9718,6 +9718,7 @@ GameObject:
   - component: {fileID: 4758679350827555214}
   - component: {fileID: 4758679350827555201}
   - component: {fileID: 4758679350827555200}
+  - component: {fileID: 4635732390697289635}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -9765,6 +9766,7 @@ MonoBehaviour:
   controlStrength: 0.01
   maxHorizSpeed: 6
   vertSpeed: 5
+  shiftSpeedMultiplier: 0
 --- !u!54 &4758679350827555201
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9798,6 +9800,23 @@ MonoBehaviour:
   playerCubePrefab: {fileID: 4205331693303718038, guid: 4b8938ba2d1af4b4ca7934adb4b0b904,
     type: 3}
   cubeSpawnTransform: {fileID: 591189927162266043}
+  cubeClickAnimationLength: 0.3
+  cubeClickAnimationScaleFactor: 1.5
+--- !u!114 &4635732390697289635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4758679350827555212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74404bd2c05114acda4e26062abfa59f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialWallScore: 100
+  multiplierPerWall: 1.5
+  currentScore: 0
 --- !u!1 &5589230567721674145
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,10 +11,12 @@ public class Wall : MonoBehaviour
     bool hasBeenTouched;
     WallSpawner spawner;
     List<List<bool>> myHole;
+    PlayerScoreHandler playerScoreHandler;
 
     void Start()
     {
         spawner = GameObject.FindGameObjectWithTag("WallSpawner").GetComponent<WallSpawner>();
+        playerScoreHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScoreHandler>();
     }
 
     public void Assemble(List<List<bool>> hole)
@@ -68,6 +70,7 @@ public class Wall : MonoBehaviour
             {
                 StartCoroutine(FadeOut());
                 spawner.SpawnNewWall();
+                playerScoreHandler.Score();
             }
             else
             {

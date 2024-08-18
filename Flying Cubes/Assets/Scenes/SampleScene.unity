@@ -12127,6 +12127,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4635732390697289635, guid: 8155ce3817e32a745a62a0254865fafe,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 286098049}
     - target: {fileID: 4758679350827555200, guid: 8155ce3817e32a745a62a0254865fafe,
         type: 3}
       propertyPath: cubeClickAnimationLength
