@@ -7,6 +7,14 @@ public class Wall : MonoBehaviour
     [SerializeField] GameObject wallCube;
     [SerializeField] int multiplyHoleSizeBy;
     [SerializeField] BoxCollider coll;
+    [SerializeField] float fadeTime;
+    bool hasBeenTouched;
+    WallSpawner spawner;
+
+    void Start()
+    {
+        spawner = GameObject.FindGameObjectWithTag("WallSpawner").GetComponent<WallSpawner>();
+    }
 
     public void Assemble(List<List<bool>> hole)
     {
@@ -15,8 +23,8 @@ public class Wall : MonoBehaviour
         int wallHeight = multiplyHoleSizeBy * holeHeight;
         int wallWidth = multiplyHoleSizeBy * holeWidth;
         coll.size = new Vector3(wallWidth, 1, wallHeight);
-        int holeStartingWidth = Random.Range(0, wallWidth - holeWidth);
-        int holeStartingHeight = Random.Range(0, wallHeight - holeHeight);
+        int holeStartingWidth = Random.Range(1, wallWidth - holeWidth - 1);
+        int holeStartingHeight = Random.Range(1, wallHeight - holeHeight - 1);
 
         float xPosLeft = -wallWidth / 2;
         float zPosUp = wallHeight / 2;
@@ -28,25 +36,43 @@ public class Wall : MonoBehaviour
                 int holeHeightIdx = r - holeStartingHeight;
                 if (holeWidthIdx < 0 || holeHeightIdx < 0 || holeWidthIdx >= holeWidth || holeHeightIdx >= holeHeight)
                 {
-                    Instantiate(wallCube, new Vector3(xPosLeft + c, transform.position.y, zPosUp - r), Quaternion.identity);
+                    GameObject cube = Instantiate(wallCube, new Vector3(xPosLeft + c, transform.position.y, zPosUp - r), Quaternion.identity);
+                    cube.transform.parent = transform;
                 }
                 else if (hole[holeHeightIdx][holeWidthIdx] == false)
                 {
-                    Instantiate(wallCube, new Vector3(xPosLeft + c, transform.position.y, zPosUp - r), Quaternion.identity);
+                    GameObject cube = Instantiate(wallCube, new Vector3(xPosLeft + c, transform.position.y, zPosUp - r), Quaternion.identity);
+                    cube.transform.parent = transform;
                 }
             }
         }
-        /*
-        string toPrint = "";
-        foreach (List<bool> row in hole)
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && !hasBeenTouched)
         {
-            foreach (bool spot in row)
-            {
-                toPrint += spot ? "*" : " ";
-            }
-            toPrint += "\n";
+            StartCoroutine(FadeOut());
+            spawner.SpawnNewWall();
+            hasBeenTouched = true;
         }
-        Debug.Log(toPrint);
-        */
+    }
+
+    IEnumerator FadeOut()
+    {
+        MeshRenderer[] rends = GetComponentsInChildren<MeshRenderer>();
+        for (float t = 0; t < fadeTime; t += Time.deltaTime)
+        {
+            foreach (MeshRenderer rend in rends)
+            {
+                rend.material.color = new Color(rend.material.color.r, rend.material.color.g, rend.material.color.b, 1f - (t / fadeTime));
+            }
+            yield return null;
+        }
+        foreach (MeshRenderer rend in rends)
+        {
+            rend.material.color = new Color(rend.material.color.r, rend.material.color.g, rend.material.color.b, 1f);
+        }
+        Destroy(gameObject);
     }
 }

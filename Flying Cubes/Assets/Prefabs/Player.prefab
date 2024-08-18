@@ -4863,8 +4863,23 @@ MonoBehaviour:
   cam: {fileID: 0}
   rb: {fileID: 4758679350827555201}
   controlStrength: 0.01
-  maxHorizSpeed: 4
+  maxHorizSpeed: 6
   vertSpeed: 5
+  onWallCollide:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: WallSpawner, Assembly-CSharp
+        m_MethodName: SpawnNewWall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &4758679350827555201
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4894,7 +4909,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerCube: {fileID: 4758679351464246861}
-  cubeGrid: []
   cubeSize: 1
   playerCubePrefab: {fileID: 4205331693303718038, guid: 4b8938ba2d1af4b4ca7934adb4b0b904,
     type: 3}
