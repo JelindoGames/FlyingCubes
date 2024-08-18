@@ -7646,6 +7646,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195590497}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1241931241 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4120626683869525685, guid: 8f0b64b3b1eed4264804110739db74e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4120626685111413596}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7687c8efa180b41f3b446fe9477ce452, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1305340418
 GameObject:
   m_ObjectHideFlags: 0
@@ -7969,7 +7981,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450869329}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3322347, y: -24.010695, z: 1.070403}
+  m_LocalPosition: {x: -1.3322347, y: -83.39, z: 1.070403}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9450,6 +9462,41 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
+        type: 3}
+      propertyPath: onWallCollide.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
+        type: 3}
+      propertyPath: onWallCollide.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
+        type: 3}
+      propertyPath: onWallCollide.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1241931241}
+    - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
+        type: 3}
+      propertyPath: onWallCollide.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
+        type: 3}
+      propertyPath: onWallCollide.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpawnNewWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
+        type: 3}
+      propertyPath: onWallCollide.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WallSpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
+        type: 3}
+      propertyPath: onWallCollide.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4758679350827555215, guid: 8155ce3817e32a745a62a0254865fafe,
         type: 3}
       propertyPath: m_RootOrder

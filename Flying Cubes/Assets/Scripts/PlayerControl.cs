@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] float controlStrength;
     [SerializeField] float maxHorizSpeed;
     [SerializeField] float vertSpeed;
+    [SerializeField] UnityEvent onWallCollide;
 
     void Update()
     {
@@ -21,5 +23,13 @@ public class PlayerControl : MonoBehaviour
             horizSpeed = horizSpeed.normalized * maxHorizSpeed;
         }
         rb.velocity = horizSpeed + Vector3.down * vertSpeed;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            onWallCollide.Invoke();
+        }
     }
 }

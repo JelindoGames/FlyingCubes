@@ -6,7 +6,6 @@ public class WallSpawner : MonoBehaviour
 {
     [SerializeField] float startingYForWall;
     [SerializeField] float yDistanceForWalls;
-    [SerializeField] float timeBetweenWallSpawns;
     [SerializeField] GameObject wallPrefab;
     [SerializeField] int minNewBlocksPerWall;
     [SerializeField] int maxNewBlocksPerWall;
@@ -17,10 +16,10 @@ public class WallSpawner : MonoBehaviour
     {
         currentY = startingYForWall;
         currentHole = new List<List<bool>>() { new List<bool>() { true } };
-        InvokeRepeating("SpawnNewWall", 0, timeBetweenWallSpawns);
+        SpawnNewWall();
     }
 
-    void SpawnNewWall()
+    public void SpawnNewWall()
     {
         GameObject wall = Instantiate(wallPrefab, Vector3.up * currentY, Quaternion.identity);
         wall.GetComponent<Wall>().Assemble(currentHole);
