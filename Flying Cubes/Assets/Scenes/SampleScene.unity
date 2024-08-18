@@ -1463,7 +1463,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 15, z: 0}
+  m_LocalPosition: {x: 0, y: 6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9760,9 +9760,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 3
-  m_FollowOffset: {x: 0, y: 15, z: 0}
+  m_FollowOffset: {x: 0, y: 6, z: 0}
   m_XDamping: 5
-  m_YDamping: 5
+  m_YDamping: 10
   m_ZDamping: 5
   m_AngularDampingMode: 0
   m_PitchDamping: 0
@@ -11222,7 +11222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969580003}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 15, z: 0}
+  m_LocalPosition: {x: 0, y: 6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11990,7 +11990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rogueCube: {fileID: 5470066226137803150, guid: e68457cd3d81e41bfa83af5723bab751,
     type: 3}
-  maxWaitForNewSpawn: 5
+  maxWaitForNewSpawn: 4
 --- !u!1001 &4120626685111413596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12016,12 +12016,12 @@ PrefabInstance:
     - target: {fileID: 4120626683869525685, guid: 8f0b64b3b1eed4264804110739db74e0,
         type: 3}
       propertyPath: yDistanceForWalls
-      value: 40
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4120626683869525685, guid: 8f0b64b3b1eed4264804110739db74e0,
         type: 3}
       propertyPath: maxNewBlocksPerWall
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4120626683869525685, guid: 8f0b64b3b1eed4264804110739db74e0,
         type: 3}
@@ -12127,6 +12127,16 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4758679350827555200, guid: 8155ce3817e32a745a62a0254865fafe,
+        type: 3}
+      propertyPath: cubeClickAnimationLength
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758679350827555200, guid: 8155ce3817e32a745a62a0254865fafe,
+        type: 3}
+      propertyPath: cubeClickAnimationScaleFactor
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4758679350827555212, guid: 8155ce3817e32a745a62a0254865fafe,
         type: 3}
       propertyPath: m_Name
@@ -12139,13 +12149,23 @@ PrefabInstance:
       objectReference: {fileID: 330585545}
     - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
         type: 3}
+      propertyPath: vertSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
+        type: 3}
       propertyPath: maxHorizSpeed
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
         type: 3}
       propertyPath: controlStrength
-      value: 0.02
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
+        type: 3}
+      propertyPath: shiftSpeedMultiplier
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
         type: 3}

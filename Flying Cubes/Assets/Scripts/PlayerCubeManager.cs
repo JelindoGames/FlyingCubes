@@ -18,6 +18,8 @@ public class PlayerCubeManager : MonoBehaviour
     [SerializeField] float cubeSize;
     [SerializeField] GameObject playerCubePrefab;
     [SerializeField] Transform cubeSpawnTransform;
+    [SerializeField] float cubeClickAnimationLength;
+    [SerializeField] float cubeClickAnimationScaleFactor;
 
     void Start()
     {
@@ -109,6 +111,7 @@ public class PlayerCubeManager : MonoBehaviour
         int colsFromCenter = desiredCol - centerCol;
         int rowsFromCenter = desiredRow - centerRow;
         newCube.transform.position = centerCube.transform.position + (new Vector3(colsFromCenter, 0, -rowsFromCenter) * cubeSize);
+        StartCoroutine(CubeClickAnimation());
         Destroy(rogueCube.gameObject);
     }
 
@@ -155,5 +158,16 @@ public class PlayerCubeManager : MonoBehaviour
     public List<CubeRow> GetCubeGrid()
     {
         return cubeGrid;
+    }
+
+    public IEnumerator CubeClickAnimation()
+    {
+        for (float t = 0; t < cubeClickAnimationLength; t += Time.deltaTime)
+        {
+            yield return null;
+            float factor = Mathf.Lerp(cubeClickAnimationScaleFactor, 1, t / cubeClickAnimationLength);
+            cubeSpawnTransform.localScale = new Vector3(1, 1, 1) * factor;
+        }
+        cubeSpawnTransform.localScale = new Vector3(1, 1, 1);
     }
 }

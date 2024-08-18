@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] float controlStrength;
     [SerializeField] float maxHorizSpeed;
     [SerializeField] float vertSpeed;
+    [SerializeField] float shiftSpeedMultiplier;
 
     void Update()
     {
@@ -21,6 +22,7 @@ public class PlayerControl : MonoBehaviour
         {
             horizSpeed = horizSpeed.normalized * maxHorizSpeed;
         }
-        rb.velocity = horizSpeed + Vector3.down * vertSpeed;
+        float finalVertSpeed = Input.GetKey(KeyCode.LeftShift) ? vertSpeed * shiftSpeedMultiplier : vertSpeed;
+        rb.velocity = horizSpeed + Vector3.down * finalVertSpeed;
     }
 }

@@ -19,8 +19,13 @@ public class WallSpawner : MonoBehaviour
         SpawnNewWall();
     }
 
-    public void SpawnNewWall()
+    public void SpawnNewWall(List<List<bool>> basedOn = null)
     {
+        if (basedOn != null)
+        {
+            currentHole = basedOn;
+            EnlargeHole();
+        }
         GameObject wall = Instantiate(wallPrefab, Vector3.up * currentY, Quaternion.identity);
         wall.GetComponent<Wall>().Assemble(currentHole);
         currentY -= yDistanceForWalls;

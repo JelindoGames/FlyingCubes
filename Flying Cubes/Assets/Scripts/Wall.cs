@@ -63,14 +63,28 @@ public class Wall : MonoBehaviour
     {
         if (other.CompareTag("Player") && !hasBeenTouched)
         {
-            if (PlayerMatchesWall(other.transform.parent.parent.GetComponent<PlayerCubeManager>()))
+            PlayerCubeManager playerCubeManager = other.transform.parent.parent.GetComponent<PlayerCubeManager>();
+            if (PlayerMatchesWall(playerCubeManager))
             {
                 StartCoroutine(FadeOut());
                 spawner.SpawnNewWall();
             }
             else
             {
-                print("You lost");
+                StartCoroutine(FadeOut());
+                var playerCubeGrid = playerCubeManager.GetCubeGrid();
+                List<List<bool>> playerShape = new List<List<bool>>();
+                for (int r = 0; r < playerCubeGrid.Count; r++)
+                {
+                    List<bool> row = new List<bool>();
+                    for (int c = 0; c < playerCubeGrid[0].cubeRow.Count; c++)
+                    {
+                        row.Add(playerCubeGrid[r].cubeRow[c] != null);
+                    }
+                    playerShape.Add(row);
+                }
+                spawner.SpawnNewWall(playerShape);
+                print("Lost life");
             }
             hasBeenTouched = true;
         }
