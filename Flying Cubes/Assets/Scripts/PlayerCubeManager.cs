@@ -17,6 +17,7 @@ public class PlayerCubeManager : MonoBehaviour
 
     [SerializeField] float cubeSize;
     [SerializeField] GameObject playerCubePrefab;
+    [SerializeField] Transform cubeSpawnTransform;
 
     void Start()
     {
@@ -75,7 +76,7 @@ public class PlayerCubeManager : MonoBehaviour
             desiredCol = closestCubeCol + 1;
         }
         // Step 3: Check if the desired spot is available
-        GameObject newCube = Instantiate(playerCubePrefab, transform);
+        GameObject newCube = Instantiate(playerCubePrefab, cubeSpawnTransform);
         if (desiredRow == -1)
         {
             AddEmptyTopRow();

@@ -9738,7 +9738,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7610521184596314751}
-  - {fileID: 4758679351464246849}
+  - {fileID: 591189927162266043}
   - {fileID: 8796836427151588472}
   - {fileID: 848140122061671359}
   - {fileID: 834807326614413648}
@@ -9797,6 +9797,7 @@ MonoBehaviour:
   cubeSize: 1
   playerCubePrefab: {fileID: 4205331693303718038, guid: 4b8938ba2d1af4b4ca7934adb4b0b904,
     type: 3}
+  cubeSpawnTransform: {fileID: 591189927162266043}
 --- !u!1 &5589230567721674145
 GameObject:
   m_ObjectHideFlags: 0
@@ -19439,6 +19440,38 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &7030885787496487519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 591189927162266043}
+  m_Layer: 0
+  m_Name: Cubes
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &591189927162266043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7030885787496487519}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4758679351464246849}
+  m_Father: {fileID: 4758679350827555215}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7652294738596688696
 GameObject:
   m_ObjectHideFlags: 0
@@ -29204,7 +29237,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 4758679350827555215}
+    m_TransformParent: {fileID: 591189927162266043}
     m_Modifications:
     - target: {fileID: 4205331693303718036, guid: 4b8938ba2d1af4b4ca7934adb4b0b904,
         type: 3}
@@ -29219,7 +29252,7 @@ PrefabInstance:
     - target: {fileID: 4205331693303718042, guid: 4b8938ba2d1af4b4ca7934adb4b0b904,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4205331693303718042, guid: 4b8938ba2d1af4b4ca7934adb4b0b904,
         type: 3}

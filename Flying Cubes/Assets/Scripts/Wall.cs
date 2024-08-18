@@ -63,7 +63,7 @@ public class Wall : MonoBehaviour
     {
         if (other.CompareTag("Player") && !hasBeenTouched)
         {
-            if (PlayerMatchesWall(other.transform.parent.GetComponent<PlayerCubeManager>()))
+            if (PlayerMatchesWall(other.transform.parent.parent.GetComponent<PlayerCubeManager>()))
             {
                 StartCoroutine(FadeOut());
                 spawner.SpawnNewWall();
