@@ -13,7 +13,8 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         Vector3 screenPoint = cam.WorldToScreenPoint(transform.position);
-        Vector2 control = Input.mousePosition - screenPoint;
+        Vector3 mousePos = Input.mousePosition / Screen.width * cam.pixelWidth;
+        Vector2 control = mousePos - screenPoint;
         Vector3 horizSpeed = new Vector3(control.x, 0, control.y) * controlStrength;
         if (horizSpeed.magnitude > maxHorizSpeed)
         {

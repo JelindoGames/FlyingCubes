@@ -11,7 +11,7 @@ public class PlayerCubeManager : MonoBehaviour
     }
 
     [SerializeField] GameObject centerCube;
-    [SerializeField] List<CubeRow> cubeGrid; // Note: Can include null cubes, always same width and height
+    List<CubeRow> cubeGrid; // Note: Can include null cubes, always same width and height
     int centerRow = 0;
     int centerCol = 0;
 
