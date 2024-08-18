@@ -9413,7 +9413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1305340419
 Transform:
   m_ObjectHideFlags: 0
@@ -9423,7 +9423,7 @@ Transform:
   m_GameObject: {fileID: 1305340418}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1, z: 1.5}
+  m_LocalScale: {x: 1.5, y: 10, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1659369606}
@@ -11938,6 +11938,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
+        type: 3}
+      propertyPath: maxHorizSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
         type: 3}
       propertyPath: onWallCollide.m_PersistentCalls.m_Calls.Array.data[0].m_Target

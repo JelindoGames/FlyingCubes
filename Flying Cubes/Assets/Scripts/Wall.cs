@@ -10,6 +10,7 @@ public class Wall : MonoBehaviour
     [SerializeField] float fadeTime;
     bool hasBeenTouched;
     WallSpawner spawner;
+    List<List<bool>> myHole;
 
     void Start()
     {
@@ -18,6 +19,16 @@ public class Wall : MonoBehaviour
 
     public void Assemble(List<List<bool>> hole)
     {
+        myHole = new List<List<bool>>();
+        for (int r = 0; r < hole.Count; r++)
+        {
+            List<bool> row = new List<bool>();
+            for (int c = 0; c < hole[0].Count; c++)
+            {
+                row.Add(hole[r][c]);
+            }
+            myHole.Add(row);
+        }
         int holeHeight = hole.Count;
         int holeWidth = hole[0].Count;
         int wallHeight = multiplyHoleSizeBy * holeHeight;
@@ -52,12 +63,41 @@ public class Wall : MonoBehaviour
     {
         if (other.CompareTag("Player") && !hasBeenTouched)
         {
-            StartCoroutine(FadeOut());
-            spawner.SpawnNewWall();
+            if (PlayerMatchesWall(other.transform.parent.GetComponent<PlayerCubeManager>()))
+            {
+                StartCoroutine(FadeOut());
+                spawner.SpawnNewWall();
+            }
+            else
+            {
+                print("You lost");
+            }
             hasBeenTouched = true;
         }
     }
 
+    bool PlayerMatchesWall(PlayerCubeManager playerCubeManager)
+    {
+        var playerCubeGrid = playerCubeManager.GetCubeGrid();
+        if (playerCubeGrid.Count != myHole.Count || playerCubeGrid[0].cubeRow.Count != myHole[0].Count)
+        {
+            return false;
+        }
+        for (int r = 0; r < myHole.Count; r++)
+        {
+            for (int c = 0; c < myHole[0].Count; c++)
+            {
+                bool playerIsHere = playerCubeGrid[r].cubeRow[c] != null;
+                bool holeIsHere = myHole[r][c];
+                if (playerIsHere != holeIsHere)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+        
     IEnumerator FadeOut()
     {
         MeshRenderer[] rends = GetComponentsInChildren<MeshRenderer>();
@@ -74,5 +114,19 @@ public class Wall : MonoBehaviour
             rend.material.color = new Color(rend.material.color.r, rend.material.color.g, rend.material.color.b, 1f);
         }
         Destroy(gameObject);
+    }
+
+    void PrintHole()
+    {
+        string toPrint = "";
+        for (int r = 0; r < myHole.Count; r++)
+        {
+            for (int c = 0; c < myHole[0].Count; c++)
+            {
+                toPrint += myHole[r][c] ? "*" : "_";
+            }
+            toPrint += "\n";
+        }
+        print(toPrint);
     }
 }

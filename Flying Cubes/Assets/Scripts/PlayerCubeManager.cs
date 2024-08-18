@@ -150,4 +150,9 @@ public class PlayerCubeManager : MonoBehaviour
             cubeRow.cubeRow.Add(null);
         }
     }
+
+    public List<CubeRow> GetCubeGrid()
+    {
+        return cubeGrid;
+    }
 }

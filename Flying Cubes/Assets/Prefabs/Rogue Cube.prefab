@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingDistFromPlayer: 10
-  floatingSpeed: 4
+  floatingSpeed: 3
 --- !u!135 &8655796885149567911
 SphereCollider:
   m_ObjectHideFlags: 0
