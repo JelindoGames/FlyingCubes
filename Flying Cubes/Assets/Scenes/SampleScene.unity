@@ -11941,7 +11941,12 @@ PrefabInstance:
     - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
         type: 3}
       propertyPath: maxHorizSpeed
-      value: 7
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
+        type: 3}
+      propertyPath: controlStrength
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4758679350827555214, guid: 8155ce3817e32a745a62a0254865fafe,
         type: 3}

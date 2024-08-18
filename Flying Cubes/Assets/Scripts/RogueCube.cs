@@ -5,11 +5,12 @@ using UnityEngine;
 public class RogueCube : MonoBehaviour
 {
     PlayerCubeManager playerCubeManager;
-    bool attemptedMerge;
+    bool disallowMerge;
     [SerializeField] float startingDistFromPlayer;
     [SerializeField] float floatingSpeed;
     float angleToPlayer;
     bool touchingPlayer;
+    float timeUntilNotTouchingPlayer = 0;
 
     void Start()
     {
@@ -23,21 +24,37 @@ public class RogueCube : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x, playerCubeManager.transform.position.y, transform.position.z);
         transform.position += new Vector3(Mathf.Cos(angleToPlayer), 0, Mathf.Sin(angleToPlayer)) * floatingSpeed * Time.deltaTime;
-        if (touchingPlayer && Input.GetKeyDown(KeyCode.Space) && !attemptedMerge)
+        if (touchingPlayer && Input.GetKeyDown(KeyCode.Space) && !disallowMerge)
         {
             playerCubeManager.RequestMerge(this);
-            attemptedMerge = true;
+            disallowMerge = true;
+            Invoke("ReallowMerge", 0.2f);
+        }
+        if (timeUntilNotTouchingPlayer > 0)
+        {
+            timeUntilNotTouchingPlayer -= Time.deltaTime;
+            if (timeUntilNotTouchingPlayer <= 0)
+            {
+                touchingPlayer = false;
+            }
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            timeUntilNotTouchingPlayer = 0.1f;
             touchingPlayer = true;
         }
     }
 
+    void ReallowMerge()
+    {
+        disallowMerge = false;
+    }
+
+    /*
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -45,4 +62,5 @@ public class RogueCube : MonoBehaviour
             touchingPlayer = false;
         }
     }
+    */
 }
