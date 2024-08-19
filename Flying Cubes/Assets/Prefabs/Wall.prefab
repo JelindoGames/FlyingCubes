@@ -50,7 +50,7 @@ MonoBehaviour:
     type: 3}
   multiplyHoleSizeBy: 6
   coll: {fileID: 1446743705928674524}
-  fadeTime: 0.5
+  fadeTime: 0.2
 --- !u!65 &1446743705928674524
 BoxCollider:
   m_ObjectHideFlags: 0
