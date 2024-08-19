@@ -12,6 +12,14 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] float vertSpeed;
     [SerializeField] float shiftSpeedMultiplier;
 
+    /*
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+    }
+    */
+
     void Update()
     {
         Vector3 screenPoint = cam.WorldToScreenPoint(transform.position);

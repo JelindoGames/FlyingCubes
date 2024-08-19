@@ -8,10 +8,14 @@ public class Wall : MonoBehaviour
     [SerializeField] int multiplyHoleSizeBy;
     [SerializeField] BoxCollider coll;
     [SerializeField] float fadeTime;
+    [SerializeField] float maxPlayerDistanceFromHole;
+    [SerializeField] float multiplyColliderSizeBy;
     bool hasBeenTouched;
     WallSpawner spawner;
     List<List<bool>> myHole;
     PlayerScoreHandler playerScoreHandler;
+    float holeStartingX;
+    float holeStartingZ;
 
     void Start()
     {
@@ -35,12 +39,16 @@ public class Wall : MonoBehaviour
         int holeWidth = hole[0].Count;
         int wallHeight = multiplyHoleSizeBy * Mathf.Max(holeHeight, holeWidth);
         int wallWidth = multiplyHoleSizeBy * Mathf.Max(holeHeight, holeWidth);
-        coll.size = new Vector3(wallWidth, 1, wallHeight);
+        coll.size = new Vector3(wallWidth * multiplyColliderSizeBy, 1, wallHeight * multiplyColliderSizeBy);
         int holeStartingWidth = Random.Range(1, wallWidth - holeWidth - 1);
         int holeStartingHeight = Random.Range(1, wallHeight - holeHeight - 1);
 
         float xPosLeft = -wallWidth / 2;
         float zPosUp = wallHeight / 2;
+
+        holeStartingX = xPosLeft + holeStartingWidth;
+        holeStartingZ = zPosUp - holeStartingHeight;
+
         for (int r = 0; r < wallHeight; r++)
         {
             for (int c = 0; c < wallWidth; c++)
@@ -87,7 +95,8 @@ public class Wall : MonoBehaviour
                     playerShape.Add(row);
                 }
                 spawner.SpawnNewWall(playerShape);
-                print("Lost life");
+                PlayerHealth playerHealth = playerCubeManager.gameObject.GetComponent<PlayerHealth>();
+                playerHealth.LoseHeart();
             }
             hasBeenTouched = true;
         }
@@ -112,7 +121,10 @@ public class Wall : MonoBehaviour
                 }
             }
         }
-        return true;
+        Vector3 playerTopLeft = playerCubeManager.TopLeftPosition();
+        float distance = Vector3.Distance(playerTopLeft, new Vector3(holeStartingX, playerTopLeft.y, holeStartingZ));
+        print(distance);
+        return distance < maxPlayerDistanceFromHole;
     }
         
     IEnumerator FadeOut()

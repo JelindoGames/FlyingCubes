@@ -6,9 +6,16 @@ public class RogueCubeSpawner : MonoBehaviour
 {
     [SerializeField] GameObject rogueCube;
     [SerializeField] float maxWaitForNewSpawn;
+    [SerializeField] PlayerCubeManager playerCubeManager;
+    [SerializeField] float startSpawningAfter;
     GameObject currentCube;
 
     void Start()
+    {
+        Invoke("StartSpawning", startSpawningAfter);
+    }
+
+    void StartSpawning()
     {
         StartCoroutine(Spawn());
     }
@@ -23,6 +30,7 @@ public class RogueCubeSpawner : MonoBehaviour
                 yield return null;
             }
             currentCube = Instantiate(rogueCube);
+            currentCube.GetComponent<RogueCube>().Initialize(playerCubeManager.GetWidth(), playerCubeManager.GetHeight());
             yield return null;
         }
     }

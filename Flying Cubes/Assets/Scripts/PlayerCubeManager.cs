@@ -170,4 +170,19 @@ public class PlayerCubeManager : MonoBehaviour
         }
         cubeSpawnTransform.localScale = new Vector3(1, 1, 1);
     }
+
+    public Vector3 TopLeftPosition()
+    {
+        return transform.position + (new Vector3(-centerCol, 0, centerRow) * cubeSize);
+    }
+
+    public float GetWidth()
+    {
+        return cubeGrid[0].cubeRow.Count * cubeSize;
+    }
+
+    public float GetHeight()
+    {
+        return cubeGrid.Count * cubeSize;
+    }
 }

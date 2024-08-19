@@ -184,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingDistFromPlayer: 10
   floatingSpeed: 3
+  playerSizeEffect: 0.5
 --- !u!135 &8655796885149567911
 SphereCollider:
   m_ObjectHideFlags: 0
