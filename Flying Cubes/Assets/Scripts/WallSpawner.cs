@@ -9,6 +9,7 @@ public class WallSpawner : MonoBehaviour
     [SerializeField] GameObject wallPrefab;
     [SerializeField] int minNewBlocksPerWall;
     [SerializeField] int maxNewBlocksPerWall;
+    [SerializeField] float extraDistancePerHole;
     public List<List<bool>> currentHole;
     float currentY;
 
@@ -29,6 +30,7 @@ public class WallSpawner : MonoBehaviour
         GameObject wall = Instantiate(wallPrefab, Vector3.up * currentY, Quaternion.identity);
         wall.GetComponent<Wall>().Assemble(currentHole);
         currentY -= yDistanceForWalls;
+        yDistanceForWalls += extraDistancePerHole;
         EnlargeHole();
     }
 

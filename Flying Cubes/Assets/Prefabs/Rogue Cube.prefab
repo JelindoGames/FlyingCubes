@@ -184,7 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingDistFromPlayer: 10
   floatingSpeed: 3
-  playerSizeEffect: 0.5
+  playerSizeEffect: 0.65
 --- !u!135 &8655796885149567911
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -210,4 +210,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89426ae92efb425a9966d022db66ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyAfter: 20
+  destroyAfter: 40

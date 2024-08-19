@@ -33,4 +33,10 @@ public class PlayerControl : MonoBehaviour
         float finalVertSpeed = Input.GetKey(KeyCode.LeftShift) ? vertSpeed * shiftSpeedMultiplier : vertSpeed;
         rb.velocity = horizSpeed + Vector3.down * finalVertSpeed;
     }
+
+    public void Kill()
+    {
+        rb.velocity = Vector3.zero;
+        this.enabled = false;
+    }
 }
