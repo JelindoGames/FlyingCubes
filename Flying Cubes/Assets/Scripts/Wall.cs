@@ -33,8 +33,8 @@ public class Wall : MonoBehaviour
         }
         int holeHeight = hole.Count;
         int holeWidth = hole[0].Count;
-        int wallHeight = multiplyHoleSizeBy * holeHeight;
-        int wallWidth = multiplyHoleSizeBy * holeWidth;
+        int wallHeight = multiplyHoleSizeBy * Mathf.Max(holeHeight, holeWidth);
+        int wallWidth = multiplyHoleSizeBy * Mathf.Max(holeHeight, holeWidth);
         coll.size = new Vector3(wallWidth, 1, wallHeight);
         int holeStartingWidth = Random.Range(1, wallWidth - holeWidth - 1);
         int holeStartingHeight = Random.Range(1, wallHeight - holeHeight - 1);
