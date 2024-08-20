@@ -21,8 +21,8 @@ public class Wall : MonoBehaviour
 
     void Start()
     {
-        spawner = GameObject.FindGameObjectWithTag("WallSpawner").GetComponent<WallSpawner>();
-        playerScoreHandler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScoreHandler>();
+        spawner = FindObjectOfType<WallSpawner>();
+        playerScoreHandler = FindObjectOfType<PlayerScoreHandler>();
     }
 
     public void Assemble(List<List<bool>> hole)
@@ -88,7 +88,7 @@ public class Wall : MonoBehaviour
     {
         if (other.CompareTag("Player") && !hasBeenTouched)
         {
-            PlayerCubeManager playerCubeManager = other.transform.parent.parent.GetComponent<PlayerCubeManager>();
+            PlayerCubeManager playerCubeManager = FindObjectOfType<PlayerCubeManager>();
             if (PlayerMatchesWall(playerCubeManager))
             {
                 StartCoroutine(FadeOut());
@@ -110,7 +110,7 @@ public class Wall : MonoBehaviour
                     playerShape.Add(row);
                 }
                 spawner.SpawnNewWall(playerShape);
-                PlayerHealth playerHealth = playerCubeManager.gameObject.GetComponent<PlayerHealth>();
+                PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
                 playerHealth.LoseHeart();
             }
             hasBeenTouched = true;
@@ -138,7 +138,6 @@ public class Wall : MonoBehaviour
         }
         Vector3 playerTopLeft = playerCubeManager.TopLeftPosition();
         float distance = Vector3.Distance(playerTopLeft, new Vector3(holeStartingX, playerTopLeft.y, holeStartingZ));
-        print(distance);
         return distance < maxPlayerDistanceFromHole;
     }
         

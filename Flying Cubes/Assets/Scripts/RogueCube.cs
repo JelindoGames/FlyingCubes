@@ -13,14 +13,20 @@ public class RogueCube : MonoBehaviour
     bool touchingPlayer;
     float timeUntilNotTouchingPlayer = 0;
     bool initialized = false;
+    GameObject player;
+
+    private void Start()
+    {
+        
+    }
 
     public void Initialize(float playerWidth, float playerHeight)
     {
-        playerCubeManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCubeManager>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerCubeManager = FindObjectOfType<PlayerCubeManager>();
         float startingAngle = Random.Range(0f, 6.14f);
         float playerSizeMultiplier = Mathf.Max(1, Mathf.Max(playerWidth, playerHeight) * playerSizeEffect);
-        print(playerSizeMultiplier);
-        transform.position = playerCubeManager.transform.position + (new Vector3(Mathf.Cos(startingAngle), 0, Mathf.Sin(startingAngle)) * startingDistFromPlayer * playerSizeMultiplier);
+        transform.position = player.transform.position + (new Vector3(Mathf.Cos(startingAngle), 0, Mathf.Sin(startingAngle)) * startingDistFromPlayer * playerSizeMultiplier);
         angleToPlayer = startingAngle + Mathf.PI;
         //floatingSpeed += playerSizeMultiplier;
         initialized = true;
@@ -29,7 +35,7 @@ public class RogueCube : MonoBehaviour
     void Update()
     {
         if (!initialized) return;
-        transform.position = new Vector3(transform.position.x, playerCubeManager.transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
         transform.position += new Vector3(Mathf.Cos(angleToPlayer), 0, Mathf.Sin(angleToPlayer)) * floatingSpeed * Time.deltaTime;
         if (touchingPlayer && Input.GetKeyDown(KeyCode.Space) && !disallowMerge)
         {
