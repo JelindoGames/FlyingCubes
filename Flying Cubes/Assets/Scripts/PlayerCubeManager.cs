@@ -21,6 +21,7 @@ public class PlayerCubeManager : MonoBehaviour
     [SerializeField] float cubeClickAnimationLength;
     [SerializeField] float cubeClickAnimationScaleFactor;
     [SerializeField] AudioSource buildSound;
+    [SerializeField] AudioSource undoSound;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class PlayerCubeManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             Undo();
+            undoSound.Play();
         }
     }
 
@@ -48,6 +50,7 @@ public class PlayerCubeManager : MonoBehaviour
         int c = centerCol + relativeToCenter.x;
         Destroy(cubeGrid[r].cubeRow[c]);
         cubeGrid[r].cubeRow[c] = null;
+        placements.RemoveAt(placements.Count - 1);
         // Check if row empty
         bool clearRow = true;
         for (int i = 0; i < cubeGrid[0].cubeRow.Count; i++)
