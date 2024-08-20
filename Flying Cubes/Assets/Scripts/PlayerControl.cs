@@ -14,14 +14,6 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] AudioSource windSound;
     [SerializeField] float windSpeedOnFall;
 
-    /*
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
-    }
-    */
-
     void Update()
     {
         Vector3 screenPoint = cam.WorldToScreenPoint(transform.position);

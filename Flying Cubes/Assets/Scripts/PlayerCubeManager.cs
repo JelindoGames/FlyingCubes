@@ -12,9 +12,9 @@ public class PlayerCubeManager : MonoBehaviour
 
     [SerializeField] GameObject centerCube;
     List<CubeRow> cubeGrid; // Note: Can include null cubes, always same width and height
+    List<Vector2Int> placements = new List<Vector2Int>();
     int centerRow = 0;
     int centerCol = 0;
-
     [SerializeField] float cubeSize;
     [SerializeField] GameObject playerCubePrefab;
     [SerializeField] Transform cubeSpawnTransform;
@@ -27,6 +27,63 @@ public class PlayerCubeManager : MonoBehaviour
         CubeRow cubeRow = new CubeRow();
         cubeRow.cubeRow = new List<GameObject>() { centerCube };
         cubeGrid = new List<CubeRow>() { cubeRow };
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            Undo();
+        }
+    }
+
+    void Undo()
+    {
+        if (placements.Count == 0)
+        {
+            return;
+        }
+        Vector2Int relativeToCenter = placements[placements.Count - 1];
+        int r = centerRow + relativeToCenter.y;
+        int c = centerCol + relativeToCenter.x;
+        Destroy(cubeGrid[r].cubeRow[c]);
+        cubeGrid[r].cubeRow[c] = null;
+        // Check if row empty
+        bool clearRow = true;
+        for (int i = 0; i < cubeGrid[0].cubeRow.Count; i++)
+        {
+            if (cubeGrid[r].cubeRow[i] != null)
+            {
+                clearRow = false;
+            }
+        }
+        bool clearColumn = true;
+        for (int i = 0; i < cubeGrid.Count; i++)
+        {
+            if (cubeGrid[i].cubeRow[c] != null)
+            {
+                clearColumn = false;
+            }
+        }
+        if (clearRow)
+        {
+            cubeGrid.RemoveAt(r);
+            if (centerRow > r)
+            {
+                centerRow--;
+            }
+        }
+        if (clearColumn)
+        {
+            for (int row = 0; row < cubeGrid.Count; row++)
+            {
+                cubeGrid[row].cubeRow.RemoveAt(c);
+            }
+            if (centerCol > c)
+            {
+                centerCol--;
+            }
+        }
     }
 
     public void RequestMerge(RogueCube rogueCube)
@@ -111,6 +168,7 @@ public class PlayerCubeManager : MonoBehaviour
         }
         int colsFromCenter = desiredCol - centerCol;
         int rowsFromCenter = desiredRow - centerRow;
+        placements.Add(new Vector2Int(colsFromCenter, rowsFromCenter));
         newCube.transform.position = centerCube.transform.position + (new Vector3(colsFromCenter, 0, -rowsFromCenter) * cubeSize);
         StartCoroutine(CubeClickAnimation());
         buildSound.Play();
