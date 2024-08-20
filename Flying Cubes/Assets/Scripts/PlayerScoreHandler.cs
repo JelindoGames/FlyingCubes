@@ -8,6 +8,7 @@ public class PlayerScoreHandler : MonoBehaviour
     [SerializeField] float initialWallScore;
     [SerializeField] float multiplierPerWall;
     [SerializeField] TextMeshPro scoreText;
+    [SerializeField] AudioSource success;
     public int currentScore = 0;
     int wallsScored = 0;
 
@@ -21,5 +22,6 @@ public class PlayerScoreHandler : MonoBehaviour
         currentScore += (int)(initialWallScore * Mathf.Pow(multiplierPerWall, wallsScored));
         scoreText.text = "Score: " + currentScore;
         wallsScored += 1;
+        success.Play();
     }
 }

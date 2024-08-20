@@ -11,6 +11,8 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] float maxHorizSpeed;
     [SerializeField] float vertSpeed;
     [SerializeField] float shiftSpeedMultiplier;
+    [SerializeField] AudioSource windSound;
+    [SerializeField] float windSpeedOnFall;
 
     /*
     private void Start()
@@ -31,6 +33,7 @@ public class PlayerControl : MonoBehaviour
             horizSpeed = horizSpeed.normalized * maxHorizSpeed;
         }
         float finalVertSpeed = Input.GetKey(KeyCode.LeftShift) ? vertSpeed * shiftSpeedMultiplier : vertSpeed;
+        windSound.pitch = Input.GetKey(KeyCode.LeftShift) ? windSpeedOnFall : 1;
         rb.velocity = horizSpeed + Vector3.down * finalVertSpeed;
     }
 
