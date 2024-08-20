@@ -30,4 +30,12 @@ public class PlayerHealth : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
+
+    public void KillAllInnerParticles()
+    {
+        GameObject[] particles = GameObject.FindGameObjectsWithTag("InnerParticles");
+
+        foreach (GameObject g in particles)
+            Destroy(g);
+    }
 }

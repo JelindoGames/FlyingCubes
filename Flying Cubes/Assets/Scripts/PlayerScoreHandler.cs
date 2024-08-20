@@ -11,9 +11,12 @@ public class PlayerScoreHandler : MonoBehaviour
     [SerializeField] AudioSource success;
     [SerializeField] AudioSource greatSuccess;
     [SerializeField] float timeForVeryGood;
+    [SerializeField] TextMeshProUGUI maxScoreText;
     public int currentScore = 0;
     int wallsScored = 0;
     float timeSinceLastScore = 0;
+
+    int highScore = -1;
 
     void Start()
     {
@@ -37,8 +40,19 @@ public class PlayerScoreHandler : MonoBehaviour
             currentScore += (int)(initialWallScore * Mathf.Pow(multiplierPerWall, wallsScored) * 2);
             greatSuccess.Play();
         }
-        scoreText.text = "Score: " + currentScore;
+        scoreText.text = "Score: " + currentScore.ToString("#,#");
         wallsScored += 1;
         timeSinceLastScore = 0;
+    }
+
+    public void GetMaxScore()
+    {
+        if (highScore == -1 || currentScore > highScore)
+        {
+            highScore = currentScore;
+            maxScoreText.text = currentScore.ToString("#,#");
+        }
+
+
     }
 }
