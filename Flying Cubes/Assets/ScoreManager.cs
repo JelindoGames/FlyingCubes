@@ -13,7 +13,8 @@ public class ScoreManager : MonoBehaviour
 
     public void SubmitScore()
     {
-        submitScoreEvent.Invoke(inputName.text, int.Parse(inputScore.text));
+        int attempt = int.Parse((inputScore.text == "" ? "0" : inputScore.text).Replace(",", ""));
+        submitScoreEvent.Invoke(inputName.text, attempt);
     }
 
 }

@@ -31,7 +31,7 @@ public class PlayerCubeManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             Undo();
         }

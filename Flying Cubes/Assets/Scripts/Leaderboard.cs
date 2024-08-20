@@ -46,6 +46,7 @@ public class Leaderboard : MonoBehaviour
         {
             if (System.Array.IndexOf(badWordList, name) != -1) return;
             GetLeaderboard();
+            Leaderboards.DemoSceneLeaderboard.ResetPlayer();
         }));
     }
 }
