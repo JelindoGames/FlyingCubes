@@ -25,9 +25,13 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        if (hearts.Count == 0 && Input.GetKeyDown(KeyCode.R))
+       /* if (hearts.Count == 0 && Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }*/
+       if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
         }
     }
 
