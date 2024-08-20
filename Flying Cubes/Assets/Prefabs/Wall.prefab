@@ -53,8 +53,10 @@ MonoBehaviour:
   fadeTime: 0.2
   maxPlayerDistanceFromHole: 2
   multiplyColliderSizeBy: 500
-  defaultMat: {fileID: 0}
-  cautionMat: {fileID: 2100000, guid: 25b6cae8cd0a84749bcf7273fe85e82a, type: 2}
+  cautionWallCube: {fileID: 5470066226137803150, guid: 31018f51399a8cb4a873e087bbe7096b,
+    type: 3}
+  deleteCube: {fileID: 5470066226137803150, guid: 838db48302ff30a4493361fb5f026f66,
+    type: 3}
   minWallWidth: 5
   minWallHeight: 5
 --- !u!65 &1446743705928674524

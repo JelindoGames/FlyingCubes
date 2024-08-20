@@ -10,7 +10,7 @@ public class Wall : MonoBehaviour
     [SerializeField] float fadeTime;
     [SerializeField] float maxPlayerDistanceFromHole;
     [SerializeField] float multiplyColliderSizeBy;
-    [SerializeField] Material defaultMat, cautionMat;
+    [SerializeField] GameObject cautionWallCube, deleteCube;
     [SerializeField] int minWallWidth, minWallHeight;
     bool hasBeenTouched;
     WallSpawner spawner;
@@ -68,11 +68,15 @@ public class Wall : MonoBehaviour
                     cube = Instantiate(wallCube, new Vector3(xPosLeft + c, transform.position.y, zPosUp - r), Quaternion.identity);
                     cube.transform.parent = transform;
                 }
+                else
+                {
+                    cube = Instantiate(deleteCube, new Vector3(xPosLeft + c, transform.position.y, zPosUp - r), Quaternion.identity);
+                    cube.transform.parent = transform;
+                }
 
                 if (r == 0 || c == 0 || r == wallHeight - 1 || c == wallWidth - 1 && cube != null)
                 {
-                    cube.GetComponent<MeshRenderer>().material = cautionMat;
-                    GameObject cube2 = Instantiate(cube, new Vector3(xPosLeft + c, transform.position.y, zPosUp - r), Quaternion.identity);
+                    GameObject cube2 = Instantiate(cautionWallCube, new Vector3(xPosLeft + c, transform.position.y, zPosUp - r), Quaternion.identity);
                     cube2.transform.localPosition += new Vector3(0f, 1f, 0f);
                     cube2.transform.parent = transform;
                 }
