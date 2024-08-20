@@ -53,6 +53,8 @@ MonoBehaviour:
   fadeTime: 0.2
   maxPlayerDistanceFromHole: 2
   multiplyColliderSizeBy: 500
+  defaultMat: {fileID: 0}
+  cautionMat: {fileID: 2100000, guid: 25b6cae8cd0a84749bcf7273fe85e82a, type: 2}
 --- !u!65 &1446743705928674524
 BoxCollider:
   m_ObjectHideFlags: 0
