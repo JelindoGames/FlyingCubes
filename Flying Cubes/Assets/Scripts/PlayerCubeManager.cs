@@ -20,6 +20,7 @@ public class PlayerCubeManager : MonoBehaviour
     [SerializeField] Transform cubeSpawnTransform;
     [SerializeField] float cubeClickAnimationLength;
     [SerializeField] float cubeClickAnimationScaleFactor;
+    [SerializeField] AudioSource buildSound;
 
     void Start()
     {
@@ -112,6 +113,7 @@ public class PlayerCubeManager : MonoBehaviour
         int rowsFromCenter = desiredRow - centerRow;
         newCube.transform.position = centerCube.transform.position + (new Vector3(colsFromCenter, 0, -rowsFromCenter) * cubeSize);
         StartCoroutine(CubeClickAnimation());
+        buildSound.Play();
         Destroy(rogueCube.gameObject);
     }
 
