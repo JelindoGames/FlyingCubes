@@ -11,6 +11,7 @@ public class Wall : MonoBehaviour
     [SerializeField] float maxPlayerDistanceFromHole;
     [SerializeField] float multiplyColliderSizeBy;
     [SerializeField] Material defaultMat, cautionMat;
+    [SerializeField] int minWallWidth, minWallHeight;
     bool hasBeenTouched;
     WallSpawner spawner;
     List<List<bool>> myHole;
@@ -38,8 +39,8 @@ public class Wall : MonoBehaviour
         }
         int holeHeight = hole.Count;
         int holeWidth = hole[0].Count;
-        int wallHeight = multiplyHoleSizeBy * Mathf.Max(holeHeight, holeWidth);
-        int wallWidth = multiplyHoleSizeBy * Mathf.Max(holeHeight, holeWidth);
+        int wallHeight = Mathf.Max(multiplyHoleSizeBy * Mathf.Max(holeHeight, holeWidth), minWallHeight);
+        int wallWidth = Mathf.Max(multiplyHoleSizeBy * Mathf.Max(holeHeight, holeWidth), minWallWidth);
         coll.size = new Vector3(wallWidth * multiplyColliderSizeBy, 1, wallHeight * multiplyColliderSizeBy);
         int holeStartingWidth = Random.Range(1, wallWidth - holeWidth - 1);
         int holeStartingHeight = Random.Range(1, wallHeight - holeHeight - 1);
@@ -68,11 +69,12 @@ public class Wall : MonoBehaviour
                     cube.transform.parent = transform;
                 }
 
-                if (r ==0 || c == 0 || r == wallHeight - 1 || c == wallWidth - 1 && cube != null)
+                if (r == 0 || c == 0 || r == wallHeight - 1 || c == wallWidth - 1 && cube != null)
                 {
                     cube.GetComponent<MeshRenderer>().material = cautionMat;
                     GameObject cube2 = Instantiate(cube, new Vector3(xPosLeft + c, transform.position.y, zPosUp - r), Quaternion.identity);
                     cube2.transform.localPosition += new Vector3(0f, 1f, 0f);
+                    cube2.transform.parent = transform;
                 }
             }
         }
