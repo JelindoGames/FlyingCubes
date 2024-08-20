@@ -32,7 +32,7 @@ public class Leaderboard : MonoBehaviour
         LeaderboardCreator.GetLeaderboard(publicLeaderboardKey, ((msg) =>
         {
             int count = Mathf.Min(msg.Length, names.Count);
-            for (int i = 0; i < names.Count; i++)
+            for (int i = 0; i < count; i++)
             {
                 names[i].text = msg[i].Username;
                 scores[i].text = msg[i].Score.ToString("#,#");
